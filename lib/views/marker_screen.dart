@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class MarkerScreen extends StatefulWidget {
+  const MarkerScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MarkerScreen> createState() => _MarkerScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MarkerScreenState extends State<MarkerScreen> {
 
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
@@ -56,16 +56,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _initialPos,
-        // compassEnabled: true,
-        markers: Set<Marker>.of(_marker),
-        // myLocationEnabled: true,
-        // myLocationButtonEnabled: true,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      body: SafeArea(
+        child : GoogleMap(
+          mapType: MapType.normal,
+          initialCameraPosition: _initialPos,
+          markers: Set<Marker>.of(_marker),
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+        ),
       ),
     );
   }
