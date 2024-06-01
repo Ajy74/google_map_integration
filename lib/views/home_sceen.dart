@@ -1,7 +1,6 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_map_integration/views/marker_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,60 +11,57 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
-
-  static const CameraPosition _initialPos = CameraPosition(
-    target: LatLng(19.212720, 73.098130),
-    zoom: 14.4746,
-  );
-
-  final List<Marker> _marker = [];
-  final List<Marker> _list = const [
-    Marker(
-      markerId: MarkerId('1'),
-      position: LatLng(19.212720, 73.098130),
-      infoWindow:  InfoWindow(
-        title: "My Current Location",
-      )
-    ),
-    Marker(
-      markerId: MarkerId('2'),
-      position: LatLng(19.213125,73.103800),
-      infoWindow:  InfoWindow(
-        title: "Rotary Park",
-      )
-    ),
-    Marker(
-      markerId: MarkerId('3'),
-      position: LatLng(19.214064,73.099834),
-      infoWindow:  InfoWindow(
-        title: "Dombivali Gymkhana",
-      )
-    )
-  ];
-
-
-  @override
-  void initState() {
-    super.initState();
-
-    _marker.addAll(_list);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _initialPos,
-        // compassEnabled: true,
-        markers: Set<Marker>.of(_marker),
-        // myLocationEnabled: true,
-        // myLocationButtonEnabled: true,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      appBar: AppBar(
+        backgroundColor: Colors.pink,
+        foregroundColor: Colors.white,
+        title: const Text(
+          "Home"
+        ),
+      ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: double.maxFinite,
+              height: 45,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const MarkerScreen();
+                  },));
+                },
+                child: const Text(
+                  "Place Marker Integration"
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15,),
+
+            SizedBox(
+              width: double.maxFinite,
+              height: 45,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const MarkerScreen();
+                  },));
+                },
+                child: const Text(
+                  "Move Location Integration"
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

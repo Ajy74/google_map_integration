@@ -56,6 +56,7 @@ class _MarkerScreenState extends State<MarkerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.pink,
       body: SafeArea(
         child : GoogleMap(
           mapType: MapType.normal,
