@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_map_integration/views/address_conversion_screen.dart';
 import 'package:google_map_integration/views/location_mover_screen.dart';
 import 'package:google_map_integration/views/marker_screen.dart';
 
@@ -58,6 +59,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: const Text(
                   "Move Location Integration"
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15,),
+
+            SizedBox(
+              width: double.maxFinite,
+              height: 45,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const AddressConversionScreen();
+                  },));
+                },
+                child: const Text(
+                  "Address Converion"
                 ),
               ),
             ),
