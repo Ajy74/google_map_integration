@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_map_integration/views/location_mover_screen.dart';
 import 'package:google_map_integration/views/marker_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -52,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const MarkerScreen();
+                    return const LocationMoverScreen();
                   },));
                 },
                 child: const Text(

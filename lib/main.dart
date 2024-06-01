@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_map_integration/sample_screen.dart';
 import 'package:google_map_integration/views/home_sceen.dart';
 
 void main() {
