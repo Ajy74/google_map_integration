@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:geocoder2/geocoder2.dart';
+import 'package:geocoding/geocoding.dart';
+
 
 
 class AddressConversionScreen extends StatefulWidget {
@@ -12,7 +14,7 @@ class AddressConversionScreen extends StatefulWidget {
 
 class _AddressConversionScreenState extends State<AddressConversionScreen> {
 
- 
+  
   String? convertedText ;
   
 
@@ -106,11 +108,29 @@ class _AddressConversionScreenState extends State<AddressConversionScreen> {
   }
   
   void coardinateToAddress() async{
-    
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(19.197575,73.1020543);
+      // List<Placemark> placemarks = await placemarkFromCoordinates(19.1952656,73.1030163);
+      setState(() {
+        convertedText = "${placemarks[0]}";
+      });
+    } catch (e) {
+      setState(() {
+        convertedText = e.toString();
+      });
+    }
   }
   
   void addressToCoardinates() async{
-    
+    try {
+      List<Location> locations = await locationFromAddress("angel pride building, sonarpada near shiv sena office, dombivli east, 421201");
+      setState(() {
+        convertedText = "${locations[0]}";
+      });
+    } catch (e) {
+      convertedText = e.toString();
+    }
+
   }
 
 }
