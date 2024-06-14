@@ -41,7 +41,7 @@ class _GoogleSearchPlacesState extends State<GoogleSearchPlaces> {
   }
 
   void getSuggestion(String input) async{
-    const String PLACES_API_KEY = "" ;
+    const String PLACES_API_KEY = "AIzaSyD3t6H9yoFcwZV9a9_uQsKy7WAJjViZGrs" ;
     const String baseUrl = "https://maps.googleapis.com/maps/api/place/autocomplete/json" ; 
     String request = '$baseUrl?input=$input&key=$PLACES_API_KEY&sessiontoken=$_sessionToken';
 

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_map_integration/views/add_marker_icon.dart';
 import 'package:google_map_integration/views/address_conversion_screen.dart';
 import 'package:google_map_integration/views/google_search_places.dart';
 import 'package:google_map_integration/views/location_mover_screen.dart';
@@ -82,7 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             const SizedBox(height: 15,),
-
             SizedBox(
               width: double.maxFinite,
               height: 45,
@@ -94,6 +94,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: const Text(
                   "Search Places"
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15,),
+            SizedBox(
+              width: double.maxFinite,
+              height: 45,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const AddMarkerIcon();
+                  },));
+                },
+                child: const Text(
+                  "Custom Icon Marker"
                 ),
               ),
             ),
