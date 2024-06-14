@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },));
                 },
                 child: const Text(
-                  "Move Location Integration"
+                  "Current Location"
                 ),
               ),
             ),
@@ -79,6 +79,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+
+            const SizedBox(height: 15,),
+
+            // SizedBox(
+            //   width: double.maxFinite,
+            //   height: 45,
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+            //         return const CurrentLocation();
+            //       },));
+            //     },
+            //     child: const Text(
+            //       "Get Current Location"
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
