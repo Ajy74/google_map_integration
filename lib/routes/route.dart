@@ -10,7 +10,19 @@ import 'package:google_map_integration/views/marker_screen.dart';
 
 class AppRoute {
 
+  static final bool isLogged = false;
+
   static final GoRouter router = GoRouter(
+
+    redirect: (context, state) {
+      if(isLogged){
+        return "/";
+      }
+      else{
+        return "/404";
+      }
+    },
+
     routes: [
       GoRoute(
         name: 'home',
