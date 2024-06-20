@@ -6,7 +6,8 @@ import 'package:geocoding/geocoding.dart';
 
 
 class AddressConversionScreen extends StatefulWidget {
-  const AddressConversionScreen({super.key});
+  final String msg;
+  const AddressConversionScreen({super.key, required this.msg});
 
   @override
   State<AddressConversionScreen> createState() => _AddressConversionScreenState();
@@ -61,7 +62,7 @@ class _AddressConversionScreenState extends State<AddressConversionScreen> {
                 borderRadius: BorderRadius.circular(10)
               ),
               child: Text(
-                "${convertedText ?? " "}",
+                "${convertedText ?? "${widget.msg}"}",
                 style: const TextStyle(
                   color: Colors.pink,
                   fontWeight: FontWeight.bold,
