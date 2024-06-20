@@ -7,7 +7,8 @@ import 'package:geocoding/geocoding.dart';
 
 class AddressConversionScreen extends StatefulWidget {
   final String msg;
-  const AddressConversionScreen({super.key, required this.msg});
+  final String queryParam;
+  const AddressConversionScreen({super.key, required this.msg, required this.queryParam});
 
   @override
   State<AddressConversionScreen> createState() => _AddressConversionScreenState();
@@ -26,7 +27,8 @@ class _AddressConversionScreenState extends State<AddressConversionScreen> {
       appBar: AppBar(
         backgroundColor: Colors.pink,
         foregroundColor: Colors.white,
-        title: const Text("Convert Address"),
+        // title: const Text("Convert Address"),
+        title: Text(widget.queryParam),
         automaticallyImplyLeading: true,
       ),
       body: Container(

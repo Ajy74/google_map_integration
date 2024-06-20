@@ -41,7 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   //~ using GoRouter
                   // GoRouter.of(context).go("/marker");
-                  context.go("/marker");
+                  // context.go("/marker");
+                  context.goNamed("marker");
                 },
                 child: const Text(
                   "Place Marker Integration"
@@ -60,7 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   //   return const LocationMoverScreen();
                   // },));
 
-                  context.go("/current-location");
+                  // context.go("/current-location");
+                  context.goNamed("current-location");
                 },
                 child: const Text(
                   "Current Location"
@@ -79,7 +81,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   //   return const AddressConversionScreen();
                   // },));
 
-                  context.go("/address-conversion/tap on below options..");
+                  // context.go("/address-conversion/tap on below options..");
+                  context.goNamed(
+                    "add-convert",
+                    pathParameters: {
+                      "message": "tap on below options..."
+                    },
+                    queryParameters: {
+                      "queryParam": "Address Conversion Page"
+                    }
+                  );
                 },
                 child: const Text(
                   "Address Converion"

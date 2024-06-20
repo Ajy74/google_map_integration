@@ -13,6 +13,7 @@ class AppRoute {
   static final GoRouter router = GoRouter(
     routes: [
       GoRoute(
+        name: 'home',
         path: "/",
         builder: (context, state) => const HomeScreen(),
         routes: [
@@ -25,19 +26,23 @@ class AppRoute {
           ),
 
           GoRoute(
+            name: 'marker',
             path: "marker",
             builder: (context, state) => const MarkerScreen(),
           ),
 
           GoRoute(
+            name: 'current-location',
             path: "current-location",
             builder: (context, state) => const LocationMoverScreen(),
           ),
 
           GoRoute(
+            name: 'add-convert',
             path: "address-conversion/:message",
             builder: (context, state) => AddressConversionScreen(
               msg: state.pathParameters['message']!,
+              queryParam: state.uri.queryParameters['queryParam']!,
             ),
           ),
 
