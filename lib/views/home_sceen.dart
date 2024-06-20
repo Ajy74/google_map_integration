@@ -1,10 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:google_map_integration/views/add_marker_icon.dart';
-import 'package:google_map_integration/views/address_conversion_screen.dart';
-import 'package:google_map_integration/views/google_search_places.dart';
-import 'package:google_map_integration/views/location_mover_screen.dart';
-import 'package:google_map_integration/views/marker_screen.dart';
+import 'package:go_router/go_router.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,9 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 45,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const MarkerScreen();
-                  },));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return const MarkerScreen();
+                  // },));
+
+                  //~ using GoRouter
+                  // GoRouter.of(context).go("/marker");
+                  context.go("/marker");
                 },
                 child: const Text(
                   "Place Marker Integration"
@@ -55,9 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 45,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const LocationMoverScreen();
-                  },));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return const LocationMoverScreen();
+                  // },));
+
+                  context.go("/current-location");
                 },
                 child: const Text(
                   "Current Location"
@@ -72,9 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 45,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const AddressConversionScreen();
-                  },));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return const AddressConversionScreen();
+                  // },));
+
+                  context.go("/address-conversion/tap on below options..");
                 },
                 child: const Text(
                   "Address Converion"
@@ -88,9 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 45,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const GoogleSearchPlaces();
-                  },));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return const GoogleSearchPlaces();
+                  // },));
+                  
+                  context.go("/search-places");
                 },
                 child: const Text(
                   "Search Places"
@@ -104,9 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 45,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const AddMarkerIcon();
-                  },));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //   return const AddMarkerIcon();
+                  // },));
+
+                  context.go("/custom-marker");
                 },
                 child: const Text(
                   "Custom Icon Marker"
