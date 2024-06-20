@@ -61,10 +61,20 @@ class AppRoute {
           GoRoute(
             name: 'add-convert',
             path: "address-conversion/:message",
-            builder: (context, state) => AddressConversionScreen(
-              msg: state.pathParameters['message']!,
-              queryParam: state.uri.queryParameters['queryParam']!,
-            ),
+            // builder: (context, state) => AddressConversionScreen(
+            //   msg: state.pathParameters['message']!,
+            //   queryParam: state.uri.queryParameters['queryParam']!,
+            // ),
+            pageBuilder: (context, state) {
+              return customPageRouteBuilder(
+                AddressConversionScreen(
+                  msg: state.pathParameters['message']!,
+                  queryParam: state.uri.queryParameters['queryParam']!,
+                ),
+                state.pageKey,
+                transitionDuration: const Duration(milliseconds: 500),
+              );
+            },
           ),
 
           GoRoute(
@@ -120,6 +130,7 @@ CustomTransitionPage customPageRouteBuilder(Widget page, LocalKey pageKey, {requ
   return CustomTransitionPage(
     key: pageKey,
     child: page,
+    fullscreenDialog: true,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;
