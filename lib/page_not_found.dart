@@ -10,8 +10,11 @@ class PageNotFoundScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.pink,
       body: Center(
-        child: Text("Page not Found !!\n$error",
-          style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 35),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Text("Page not Found !!\n$error",
+            style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 35),
+          ),
         ),
       ),
     );

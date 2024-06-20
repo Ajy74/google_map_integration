@@ -82,7 +82,8 @@ class _AddMarkerIconState extends State<AddMarkerIcon> {
           infoWindow:  InfoWindow(
             title: "Marker_${i+1}",
           ),
-          icon: BitmapDescriptor.fromBytes(markerIcon)
+          icon: BitmapDescriptor.fromBytes(markerIcon),
+          draggable: true //~ due to this marker will be drag 
         )
       );
     }

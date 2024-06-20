@@ -41,8 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   //~ using GoRouter
                   // GoRouter.of(context).go("/marker");
-                  // context.go("/marker");
-                  context.goNamed("marker");
+                  // context.go("/marker");   //~ it will not manage stack
+                  context.goNamed("marker");  //~ it will not manage stack
+
+                  // context.push("/marker");  //~ it will manage stack
+                  // context.pushNamed("marker");  //~ it will manage stack
                 },
                 child: const Text(
                   "Place Marker Integration"

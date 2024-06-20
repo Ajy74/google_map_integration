@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_map_integration/page_not_found.dart';
@@ -10,18 +11,19 @@ import 'package:google_map_integration/views/marker_screen.dart';
 
 class AppRoute {
 
-  static final bool isLogged = false;
+  static const bool isLogged = true;
 
   static final GoRouter router = GoRouter(
 
-    redirect: (context, state) {
-      if(isLogged){
-        return "/";
-      }
-      else{
-        return "/404";
-      }
-    },
+    //~ redirection 
+    // redirect: (context, state) {
+    //   if(isLogged){
+    //     return "/";
+    //   }
+    //   else{
+    //     return "/404";
+    //   }
+    // },
 
     routes: [
       GoRoute(
@@ -29,18 +31,25 @@ class AppRoute {
         path: "/",
         builder: (context, state) => const HomeScreen(),
         routes: [
-          //~ we can like this also without using more slash(/) ...as a child routes
+          //~ we can write like this also without using more slash(/) ...as a child routes
           GoRoute(
             path: "404",
             builder: (context, state) => PageNotFoundScreen(
-              error: state.error as String? ?? '',
+              error: state.extra as String? ?? ' or you are not authorized..',
             ),
           ),
 
           GoRoute(
             name: 'marker',
             path: "marker",
-            builder: (context, state) => const MarkerScreen(),
+            // builder: (context, state) => const MarkerScreen(),
+            pageBuilder: (context, state) {
+               return customPageRouteBuilder(
+                const MarkerScreen(),
+                state.pageKey,
+                transitionDuration: const Duration(milliseconds: 500),
+              );
+            },
           ),
 
           GoRoute(
@@ -60,7 +69,27 @@ class AppRoute {
 
           GoRoute(
             path: "search-places",
-            builder: (context, state) => const GoogleSearchPlaces(),
+            // builder: (context, state) => const GoogleSearchPlaces(),
+            pageBuilder: (context, state) {
+              // return CustomTransitionPage(
+              //   key: state.pageKey,
+              //   child: const GoogleSearchPlaces(),
+              //   transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              //     const begin = Offset(1.0, 0.0);
+              //     const end = Offset.zero;
+              //     const curve = Curves.easeInOut;
+              //     var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+              //     var offsetAnimation = animation.drive(tween);
+              //     return SlideTransition(position: offsetAnimation, child: child);
+              //   },
+              //   transitionDuration: const Duration(milliseconds: 500),
+              // );
+              return customPageRouteBuilder(
+                const GoogleSearchPlaces(),
+                state.pageKey,
+                transitionDuration: const Duration(milliseconds: 500),
+              );
+            },
           ),
 
           GoRoute(
@@ -81,8 +110,24 @@ class AppRoute {
     ],
     
     onException: (_, GoRouterState state, GoRouter router) {
-      router.go('/404', extra: state.uri.toString());
+      router.go('/404', extra: state.error ?? "");
     },
   );
 
+}
+
+CustomTransitionPage customPageRouteBuilder(Widget page, LocalKey pageKey, {required Duration transitionDuration}) {
+  return CustomTransitionPage(
+    key: pageKey,
+    child: page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.easeInOut;
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(position: offsetAnimation, child: child);
+    },
+    transitionDuration: transitionDuration,
+  );
 }
