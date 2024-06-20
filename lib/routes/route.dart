@@ -11,27 +11,33 @@ class AppRoute {
       GoRoute(
         path: "/",
         builder: (context, state) => const HomeScreen(),
+        routes: [
+          //~ we can like this also without using more slash(/) ...as a child routes
+          GoRoute(
+            path: "404",
+            builder: (context, state) => const PageNotFoundScreen(),
+          ),
+
+          GoRoute(
+            path: "marker",
+            builder: (context, state) => const MarkerScreen(),
+          ),
+        ]
       ),
-      GoRoute(
-        path: "/marker",
-        builder: (context, state) => const MarkerScreen(),
-      ),
-      GoRoute(
-        path: "/404",
-        builder: (context, state) => const PageNotFoundScreen(),
-      ),
+
+      // GoRoute(
+      //   path: "/marker",
+      //   builder: (context, state) => const MarkerScreen(),
+      // ),
+      // GoRoute(
+      //   path: "/404",
+      //   builder: (context, state) => const PageNotFoundScreen(),
+      // ),
     ],
     
     onException: (_, GoRouterState state, GoRouter router) {
       router.go('/404', extra: state.uri.toString());
     },
-    // errorBuilder: (context, state) {
-    //   return const Scaffold(
-    //     body: Center(
-    //       child: Text("Page not Found !!"),
-    //     ),
-    //   );
-    // },
   );
 
 }
